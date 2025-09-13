@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Farhad\RoleController;
+use App\Http\Controllers\Backend\Farhad\UserController;
 use App\Http\Controllers\Backend\Farhad\BrandController;
 use App\Http\Controllers\Backend\Farhad\StatusController;
 use App\Http\Controllers\Backend\Farhad\ProductController;
 use App\Http\Controllers\Backend\Farhad\CategoryController;
 use App\Http\Controllers\Backend\Farhad\DashboardController;
 use App\Http\Controllers\Backend\Farhad\SystemSettingController;
-use App\Http\Controllers\Backend\Farhad\UserController;
+use App\Http\Controllers\Backend\Farhad\ProfileSettingController;
 
 
 
@@ -48,8 +49,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('system/settings', [SystemSettingController::class, 'edit'])->name('system-settings.edit');
     Route::post('system/settings', [SystemSettingController::class, 'update'])->name('system-settings.update');
     // Mail settings routes
-    Route::get('system/mail-settings', [SystemSettingController::class, 'editMailSettings'])->name('mail-settings.edit');
-    Route::post('system/mail-settings', [SystemSettingController::class, 'updateMailSettings'])->name('mail-settings.update');
+    Route::get('mail/settings', [SystemSettingController::class, 'editMailSettings'])->name('mail-settings.edit');
+    Route::post('mail/settings', [SystemSettingController::class, 'updateMailSettings'])->name('mail-settings.update');
+
+    // Profile settings routes
+    Route::get('profile/settings', [ProfileSettingController::class, 'edit'])->name('profile-settings.edit');
+    Route::post('profile/settings', [ProfileSettingController::class, 'update'])->name('profile-settings.update');
 
     // role routes
     Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
@@ -77,5 +82,5 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     // CKEditor image upload
     Route::post('/ckeditor/upload', [ProductController::class, 'uploadCkEditorImage'])->name('ckeditor.upload');
-    Route::delete('/ckeditor/remove', [ProductController::class, 'removeCkEditorImage']) ->name('ckeditor.remove');
+    Route::delete('/ckeditor/remove', [ProductController::class, 'removeCkEditorImage'])->name('ckeditor.remove');
 });

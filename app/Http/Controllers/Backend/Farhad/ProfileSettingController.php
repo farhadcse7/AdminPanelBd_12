@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ProfileSettingController extends Controller
 {
-    public function index()
+    public function edit()
     {
-        return view('backend.layouts.profile-setting.index');
+        return view('backend.layouts.profile-setting.edit');
     }
 
-    
+
 }
